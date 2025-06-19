@@ -360,6 +360,8 @@ finesse_faction_scores = pd.DataFrame({
 }, index=["Dagger", "2 Daggers", "4 Darts", "Shortbow, 20 Arrows, Quiver", "Light Crossbow, 20 Bolts, Quiver"])
 
 
+
+
 import pandas as pd
 
 # Useful weapon score tables
@@ -661,9 +663,30 @@ stat_total = int(total_stats.sum())
 ribbon_digits = extract_unique_digits(stat_total)
 
 
+# === Totals Background
+
 
 bg_scores = df_bg_plate.loc[selected_plate] + df_bg_district.loc[selected_district] + df_bg_faction.loc[selected_faction]
+
+# === Enforcer custom placement logic for Gilded Gaze Precrim ===
+if selected_faction == "Gilded Gaze":
+    valid_enforcer_conditions = [
+        (selected_plate in ["Plate 1", "Plate 2", "Plate 3", "Plate 4"] and selected_district == "Azure"),
+        (selected_plate == "Plate 3" and selected_district == "Amethyst")
+    ]
+    if any(valid_enforcer_conditions):
+        bg_scores["Enforcer"] += 130  # Strong boost to force it in
+    else:
+        bg_scores["Enforcer"] = -1000  # Effectively removes it from selection
+
+
+
+
 top_backgrounds = bg_scores.sort_values(ascending=False).head(5).index.tolist()
+
+
+
+
 
 def assign_weapon_bucket(top_stats, total_stats, selected_plate, selected_faction):
     physical_stats = ["STR", "DEX", "CON"]
