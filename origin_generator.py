@@ -2,7 +2,17 @@ import streamlit as st
 import pandas as pd
 import random
 
+# === CUSTOM STREAMLIT STYLING ===
+st.set_page_config(page_title="Origin Generator", layout="wide", initial_sidebar_state="auto")
 
+st.markdown("""
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    .st-emotion-cache-18ni7ap {display: none;}
+    </style>
+""", unsafe_allow_html=True)
 
 # Sample input UI
 plate_options = ["Plate 0", "Plate 1", "Plate 2", "Plate 3", "Plate 4", "Plate 5", "Plate 6"]
