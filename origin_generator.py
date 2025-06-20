@@ -14,6 +14,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Font Color
+st.markdown("""
+    <style>
+    body, div, span, p, td, th {
+        color: #FFFCDB !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Sample input UI
 plate_options = ["Plate 0", "Plate 1", "Plate 2", "Plate 3", "Plate 4", "Plate 5", "Plate 6"]
 district_options = ["Azure", "Amethyst", "Ruby", "Citrine", "Rhodonite", "Amber", "Jade", "Obsidian"]
