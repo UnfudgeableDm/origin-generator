@@ -1075,7 +1075,7 @@ for idx, row in df_out.iterrows():
 <div style="font-size: 14px; line-height: 1.4; margin-bottom: 1.5em;">
 <b>{row['Background']}</b><br>
 <b>Stats:</b> {row['Stats']}<br>
-<b>Skills:</b> {', '.join(row['Skills'])}<br>
+<b>Skills:</b> {', '.join(sorted(row['Skills']))}<br>
 <b>Tool:</b> {row['Tool']}<br>
 <b>Equipment:</b> {row['Equipment']}
 </div>
