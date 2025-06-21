@@ -23,14 +23,41 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sample input UI
-plate_options = ["Plate 0", "Plate 1", "Plate 2", "Plate 3", "Plate 4", "Plate 5", "Plate 6"]
+# Sample input UI with friendly Plate names
+plate_labels = [
+    "Plate One", "Plate Two", "Plate Three",
+    "Plate Four", "Plate Five", "Plate Six", "Plate Zero"
+]
+
 district_options = ["Azure", "Amethyst", "Ruby", "Citrine", "Rhodonite", "Amber", "Jade", "Obsidian"]
 faction_options = ["Paragons", "Optimists", "Gilded Gaze", "Transneuroclasts", "Chronomancers", "New Faith", "Unpinned"]
 
-selected_plate = st.selectbox("Select Plate", plate_options)
+
+# Selectboxes
 selected_district = st.selectbox("Select District", district_options)
 selected_faction = st.selectbox("Select Faction", faction_options)
+
+# Keep this line for later DataFrame indexing
+plate_options = ["Plate 0", "Plate 1", "Plate 2", "Plate 3", "Plate 4", "Plate 5", "Plate 6"]
+
+
+
+# Internal mapping (unchanged keys used in logic)
+plate_mapping = {
+    "Plate One": "Plate 1",
+    "Plate Two": "Plate 2",
+    "Plate Three": "Plate 3",
+    "Plate Four": "Plate 4",
+    "Plate Five": "Plate 5",
+    "Plate Six": "Plate 6",
+    "Plate Zero": "Plate 0"
+}
+
+# Use the label for display, map it back internally
+plate_label = st.selectbox("Select Plate", plate_labels)
+selected_plate = plate_mapping[plate_label]
+
+
 
 # Deterministic random seed based on user input
 seed_input = f"{selected_plate}_{selected_district}_{selected_faction}"
